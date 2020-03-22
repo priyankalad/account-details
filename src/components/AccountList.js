@@ -25,13 +25,13 @@ export default function AccountList() {
     setActivePage(pageNum);
   };
   let handleSearch = () => {
-    search = ref.current.value;
+    setSearch(ref.current.value);
     if (search) {
-      search = search.toLowerCase();
+      let searchVal = search.toLowerCase();
       setSearchList(
         accountList.filter(acc => {
           let accDetail = acc["Transaction Details"].toLowerCase();
-          return accDetail.includes(search) || search.includes(accDetail);
+          return accDetail.includes(searchVal) || searchVal.includes(accDetail);
         })
       );
     } else {
@@ -39,7 +39,6 @@ export default function AccountList() {
     }
   };
 
-  let perPage = 10;
   return (
     <div className="container">
       <h1 className="text-center text-primary">Account List</h1>
@@ -68,11 +67,7 @@ export default function AccountList() {
                 <th scope="col">Balance Amt</th>
               </tr>
             </thead>
-            {searchList.length > 0 ? (
-              <RenderRows activePage={activePage} data={searchList} />
-            ) : (
-              ""
-            )}
+            {<RenderRows activePage={activePage} data={searchList} />}
           </table>
         </div>
       </div>
