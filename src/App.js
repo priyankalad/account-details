@@ -1,10 +1,8 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import AccountList from "./components/AccountList";
-
 function App() {
-  return <AccountList />;
+  return <AccountList enablePagination={true} enableSorting={true} />;
 }
 
 export default App;
